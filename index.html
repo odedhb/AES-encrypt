@@ -9,12 +9,15 @@
     <br><button onclick="encrypt()">encrypt</button>
     
   <br>encrypted:<br><span id='result'></span>
+    <br>url encoded:<br><span id='result-encoded'></span>
+    
 
     <script>
         function encrypt(){
             
          var encrypted = CryptoJS.AES.encrypt(document.getElementById("text").value, document.getElementById("pass").value);   
             document.getElementById("result").innerHTML = encrypted;
+            document.getElementById("result-encoded").innerHTML = encodeURI(encrypted);
         }        
         
         </script>
