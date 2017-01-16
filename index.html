@@ -2,11 +2,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 
 
-  text:<input type='text'>cool</input>
+  <br>text:<input type='text' value='0.1'/>
 
-  password:<input type='text'>cool</input>
+  <br>password:<input type='text' value='cool'/>
   
-  encrypted:<span></span>
+  <br>encrypted:<span></span>
 
+    <script>
+        
+         var encrypted = CryptoJS.AES.encrypt("Message", "Secret Passphrase");
+//U2FsdGVkX18ZUVvShFSES21qHsQEqZXMxQ9zgHy+bu0=
+
+var decrypted = CryptoJS.AES.decrypt(encrypted, "Secret Passphrase");
+//4d657373616765
+
+
+document.getElementById("demo1").innerHTML = encrypted;
+document.getElementById("demo2").innerHTML = decrypted;
+document.getElementById("demo3").innerHTML = decrypted.toString(CryptoJS.enc.Utf8);
+        
+        </script>
 
 </html>
