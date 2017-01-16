@@ -17,7 +17,7 @@
             
          var encrypted = CryptoJS.AES.encrypt(document.getElementById("text").value, document.getElementById("pass").value);   
             document.getElementById("result").innerHTML = encrypted;
-            document.getElementById("result-encoded").innerHTML = encodeURI(encrypted);
+            document.getElementById("result-encoded").innerHTML = encodeURIComponent(encrypted);
         }        
         
         </script>
