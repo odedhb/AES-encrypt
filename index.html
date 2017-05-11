@@ -1,25 +1,92 @@
 <html>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
-    <h1>AES encrypt online using CryptoJS</h1>
+<head>
 
-  <br>text:<input id='text' type='text' value='0.1'/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <style type="text/css">
+        tr {
+            height: 35px;
+        }
+    </style>
+</head>
+<body>
 
-  <br>password:<input id='pass' type='text' value='cool'/>
-  
-    <br><button onclick="encrypt()">encrypt</button>
-    
-  <br>encrypted:<br><span id='result'></span>
-    <br>url encoded:<br><span id='result-encoded'></span>
-    
+<table width="100%" cellspacing="0">
+    <tr>
+        <td width="25%">Plaintext:</td>
+        <td width="75%"><input id='text' type='text' value='Text to encrypt' style="width: 100%;"/></td>
+    </tr>
 
-    <script>
-        function encrypt(){
-            
-         var encrypted = CryptoJS.AES.encrypt(document.getElementById("text").value, document.getElementById("pass").value);   
-            document.getElementById("result").innerHTML = encrypted;
-            document.getElementById("result-encoded").innerHTML = encodeURIComponent(encrypted);
-        }        
-        
-        </script>
+    <tr>
+        <td>Password:</td>
+        <td><input id='pass' type='text' value='Your password' style="width: 100%;"/></td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td>
+            <button onclick="encrypt()">encrypt</button>
+        </td>
+    </tr>
+
+    <tr></tr>
+
+    <tr>
+        <td>
+            Ciphertext:
+        </td>
+        <td>
+            <input id='ciphertext' style="width: 100%;">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            URI Encoded:
+        </td>
+        <td>
+            <span id="result-encoded"></span>
+        </td>
+    </tr>
+
+    <tr></tr>
+
+    <tr>
+        <td></td>
+        <td>
+            <button onclick="decrypt()">decrypt</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Decrypted
+        </td>
+        <td>
+            <input id='plaintext' style="width: 100%;">
+        </td>
+    </tr>
+
+</table>
+
+</body>
+
+<script>
+    function encrypt(){
+
+        var encrypted = CryptoJS.AES.encrypt(document.getElementById("text").value, document.getElementById("pass").value);
+        document.getElementById("ciphertext").value = encrypted;
+        document.getElementById("result-encoded").innerHTML = encodeURIComponent(encrypted);
+
+        // reset the plaintext
+        document.getElementById("plaintext").value = "";
+
+    }
+
+    function decrypt(){
+
+        var decrypted = CryptoJS.AES.decrypt(document.getElementById("ciphertext").value, document.getElementById("pass").value);
+        document.getElementById("plaintext").value = decrypted.toString(CryptoJS.enc.Utf8)
+        console.log([decrypted.toString(CryptoJS.enc.Utf8).length])
+    }
+
+</script>
 
 </html>
