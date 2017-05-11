@@ -7,8 +7,9 @@
   <br>password:<input id='pass' type='text' value='cool'/>
   
     <br><button onclick="encrypt()">encrypt</button>
+    <br><button onclick="decrypt()">decrypt</button>
     
-  <br>encrypted:<br><span id='result'></span>
+  <br>result:<br><span id='result'></span>
     <br>url encoded:<br><span id='result-encoded'></span>
     
 
@@ -18,6 +19,12 @@
          var encrypted = CryptoJS.AES.encrypt(document.getElementById("text").value, document.getElementById("pass").value);   
             document.getElementById("result").innerHTML = encrypted;
             document.getElementById("result-encoded").innerHTML = encodeURIComponent(encrypted);
+        }        
+        
+        function decrypt(){
+         var decrypted = CryptoJS.AES.decrypt(document.getElementById("text").value, document.getElementById("pass").value).toString(CryptoJS.enc.Utf8);
+            document.getElementById("result").innerHTML = decrypted;
+            document.getElementById("result-encoded").innerHTML = ' ';
         }        
         
         </script>
