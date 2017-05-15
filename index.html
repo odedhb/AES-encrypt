@@ -1,30 +1,31 @@
 <html>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
-    <h1>AES encrypt online using CryptoJS</h1>
+    <h1>AES encrypt/decrypt online using CryptoJS</h1>
 
   <br>text:<input id='text' type='text' value='0.1'/>
 
   <br>password:<input id='pass' type='text' value='cool'/>
   
     <br><button onclick="encrypt()">encrypt</button>
+
+    <br>result:<br><span id='result'></span>
+
+    <br>decoded:<br><span id="decrypted"></span>
+
     <br><button onclick="decrypt()">decrypt</button>
-    
-  <br>result:<br><span id='result'></span>
-    <br>url encoded:<br><span id='result-encoded'></span>
-    
 
     <script>
         function encrypt(){
             
          var encrypted = CryptoJS.AES.encrypt(document.getElementById("text").value, document.getElementById("pass").value);   
             document.getElementById("result").innerHTML = encrypted;
-            document.getElementById("result-encoded").innerHTML = encodeURIComponent(encrypted);
+            document.getElementById("decrypted").innerHTML = '';
         }        
         
         function decrypt(){
-         var decrypted = CryptoJS.AES.decrypt(document.getElementById("text").value, document.getElementById("pass").value).toString(CryptoJS.enc.Utf8);
-            document.getElementById("result").innerHTML = decrypted;
-            document.getElementById("result-encoded").innerHTML = ' ';
+         var decrypted = CryptoJS.AES.decrypt(document.getElementById("result").innerHTML, document.getElementById("pass").value).toString(CryptoJS.enc.Utf8);
+            document.getElementById("decrypted").innerHTML = decrypted;
+            document.getElementById("result").innerHTML = '';
         }        
         
         </script>
